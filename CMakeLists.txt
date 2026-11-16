@@ -27,3 +27,23 @@ foreach(header IN LISTS MAVLINK_ROOT_HEADERS)
     configure_file("${header}" "${MAVLINK_INCLUDE_ROOT}/mavlink/${header_name}" COPYONLY)
 endforeach()
 target_include_directories(rov_sim PRIVATE "${MAVLINK_INCLUDE_ROOT}")
+# ============================================================
+# UROV CUSTOM COMMUNICATION APPLICATION
+# ============================================================
+
+add_executable(surface_communication surface_communication.cpp)
+target_compile_features(surface_communication PRIVATE cxx_std_17)
+
+add_executable(rov_communication rov_communication.cpp)
+target_compile_features(rov_communication PRIVATE cxx_std_17)
+
+
+# ============================================================
+# UROV UDP NETWORK TESTING
+# ============================================================
+
+add_executable(surface_test surface_test.cpp)
+target_compile_features(surface_test PRIVATE cxx_std_17)
+
+add_executable(rov_receiver rov_receiver.cpp)
+target_compile_features(rov_receiver PRIVATE cxx_std_17)
